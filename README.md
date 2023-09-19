@@ -6,6 +6,11 @@
 
 - Kubernetes (Used version: v1.25.0)
 
+# Zabbix service configuration with K8S
+![image](https://github.com/smilewonjin/k8s-zabbix/assets/126428788/3c1482bf-a2c7-4102-8f04-9999726b001f)
+
+![image](https://github.com/smilewonjin/k8s-zabbix/assets/126428788/4ec77444-73fc-4518-ba77-1aea4c2892a1)
+
 # File structure
 
 | File			| Content | Resources |
