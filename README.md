@@ -66,7 +66,6 @@ Execute the command to get informations about your enviromennt:
 kubectl get deployment,svc,pods,pvc,ingress  -n monitoring
 
 ```
-
 ![image](https://github.com/smilewonjin/k8s-zabbix/assets/126428788/c0c1f2fd-11cd-4332-9c3c-edf85cb20462)
 
 ```
