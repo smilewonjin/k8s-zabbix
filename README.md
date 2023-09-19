@@ -69,6 +69,12 @@ kubectl get deployment,svc,pods,pvc,ingress  -n monitoring
 
 ![image](https://github.com/smilewonjin/k8s-zabbix/assets/126428788/c0c1f2fd-11cd-4332-9c3c-edf85cb20462)
 
+```
+kubectl describe -n monitoring svc
+
+```
+![image](https://github.com/smilewonjin/k8s-zabbix/assets/126428788/5f67cbdf-9da8-4f7d-9ba5-682864de90b4)
+
 
 ## CADVISOR
 
@@ -78,21 +84,9 @@ The Cadvisor export the metrics of the Kubernetes if you preferer monitoring thi
 kubectl apply -f cadvisor.yaml
 ```
 
-```
 
 
 ## Access
-
-
-
-After that execute this command to get IP address of the Zabbix Frontend:
-
-```
-$ kubectl get svc  -n monitoring
-...
-zabbix-web-nginx-mysql   ClusterIP   10.103.89.223   <none>        8081/TCP,8443/TCP   18h
-
-```
 
 ## Metrics
 
