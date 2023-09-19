@@ -109,4 +109,4 @@ https://hub.docker.com/u/zabbix/
 https://kubernetes.io/docs/concepts/
 
 
-Thanks, @QuintilianoB for collaborating with the best practices Kubernetes  :)
+
