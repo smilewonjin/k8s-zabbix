@@ -1,0 +1,99 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  namespace: monitoring
+  creationTimestamp: null
+  labels:
+    zabbix-app: zabbix-server
+  name: zabbix-web-nginx-mysql
+spec:
+  selector:
+    matchLabels:
+      zabbix-app: zabbix-server
+  serviceName: "zabbix-web-nginx-mysql"
+  replicas: 2
+  #strategy:
+  #  type: Recreate
+  template:
+    metadata:
+      labels:
+        zabbix-app: zabbix-server
+    spec:
+      containers:
+      - env:
+        - name: MYSQL_DATABASE
+          valueFrom:
+            configMapKeyRef:
+              key: MYSQL_DATABASE
+              name: zabbix-app
+              
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: MYSQL_ROOT_PASSWORD
+              name: zabbix-app
+
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: MYSQL_PASSWORD
+              name: zabbix-app
+
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: MYSQL_ROOT_PASSWORD
+              name: zabbix-app
+        - name: ZBX_SERVER_HOST
+          valueFrom:
+            configMapKeyRef:
+              key: ZBX_SERVER_HOST
+              name: zabbix-app
+        - name: ZBX_SERVER_NAME
+          valueFrom:
+            configMapKeyRef:
+              key: ZBX_SERVER_NAME
+              name: zabbix-app
+        image: smilewonjin/zabbix-web-nginx-mysql:latest
+        livenessProbe:
+          exec:
+            command:
+            - curl
+            - -f
+            - http://localhost:8080
+          failureThreshold: 3
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+        name: zabbix-web-nginx-mysql
+        ports:
+        - containerPort: 8080
+        resources: {}
+### Service
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: monitoring
+  annotations:
+  creationTimestamp: null
+  labels:
+    zabbix-app: zabbix-server
+  name: zabbix-web-nginx-mysql
+spec:
+  type: LoadBalancer
+  ports:
+  - name: "80"
+    port: 80
+    targetPort: 8080
+#    nodePort: 30080
+  - name: "443"
+    port: 443
+    targetPort: 8443
+#    nodePort: 30443
+  selector:
+    zabbix-app: zabbix-server
+status:
+  loadBalancer: {}
+
