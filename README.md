@@ -4,7 +4,7 @@
 
 # Pre requirements
 
-- Kubernetes (Used version: v1.18.0)
+- Kubernetes (Used version: v1.25.0)
 
 # File structure
 
@@ -67,7 +67,8 @@ kubectl get deployment,svc,pods,pvc,ingress  -n monitoring
 
 ```
 
-![Alt text](screenshot/kubernetes-zabbix.png?raw=true "Kubernetes-Zabbix")
+![image](https://github.com/smilewonjin/k8s-zabbix/assets/126428788/c0c1f2fd-11cd-4332-9c3c-edf85cb20462)
+
 
 ## CADVISOR
 
@@ -78,26 +79,11 @@ kubectl apply -f cadvisor.yaml
 ```
 
 ```
-kubectl get deployment,svc,pods,pvc,ingress  -n cadvisor`
-```
-![Alt text](screenshot/cadvisor.png?raw=true "Cadvisor")
 
 
 ## Access
 
-To  you access  Zabbix through the Minikube, execute this command:
 
-```
-$ minikube tunnel
-Status:	
-	machine: minikube
-	pid: 4042
-	route: 10.96.0.0/12 -> 172.17.0.2
-	minikube: Running
-	services: []
-    errors: 
-
-```
 
 After that execute this command to get IP address of the Zabbix Frontend:
 
@@ -110,9 +96,11 @@ zabbix-web-nginx-mysql   ClusterIP   10.103.89.223   <none>        8081/TCP,8443
 
 ## Metrics
 
-I created one host at the Zabbix to get metrics Cadvisor
+## Dashboard
+![image](https://github.com/smilewonjin/k8s-zabbix/assets/126428788/b6dd4dd8-927c-48b5-ac84-4c452fcb36f2)
 
-![Alt text](screenshot/metrics-cadvisor-zabbix.png?raw=true "Cadvisor-Zabbix")
+
+
 
 
 ## Reference
